@@ -3,59 +3,94 @@
     "outDir": "lib",
     "baseUrl": ".",
     "jsx": "preserve",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "paths": {
-      "@actions": ["./src/actions"],
-      "@actions/*": ["./src/actions/*"],
-      "@assets": ["./src/assets"],
-      "@assets/*": ["./src/assets/*"],
-      "@api": ["./src/api"],
-      "@api/*": ["./src/api/*"],
-      "@components/*": ["./src/components/*"],
-      "@components": ["./src/components"],
-      "@errors": ["./src/errors"],
-      "@errors/*": ["./src/errors/*"],
-      "@models": ["./src/models"],
-      "@models/*": ["./src/models/*"],
-      "@reducers": ["./src/reducers"],
-      "@reducers/*": ["./src/reducers/*"],
-      "@redux": ["./src/redux"],
-      "@redux/*": ["./src/redux/*"],
-      "@sagas": ["./src/sagas"],
-      "@sagas/*": ["./src/sagas/*"],
-      "@types": ["./src/types"],
-      "@types/*": ["./src/types/*"]
+      "@actions": [
+        "./src/actions"
+      ],
+      "@actions/*": [
+        "./src/actions/*"
+      ],
+      "@assets": [
+        "./src/assets"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@api": [
+        "./src/api"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@components": [
+        "./src/components"
+      ],
+      "@errors": [
+        "./src/errors"
+      ],
+      "@errors/*": [
+        "./src/errors/*"
+      ],
+      "@models": [
+        "./src/models"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@reducers": [
+        "./src/reducers"
+      ],
+      "@reducers/*": [
+        "./src/reducers/*"
+      ],
+      "@redux": [
+        "./src/redux"
+      ],
+      "@redux/*": [
+        "./src/redux/*"
+      ],
+      "@sagas": [
+        "./src/sagas"
+      ],
+      "@sagas/*": [
+        "./src/sagas/*"
+      ],
+      "@types": [
+        "./src/types"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ]
     },
     "skipLibCheck": true,
     "module": "esnext",
     "isolatedModules": true,
-
-    "allowSyntheticDefaultImports": true,
-    "allowJs": false,
-    "checkJs": false,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "noEmit": false,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": true,
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "strictNullChecks": true,
+    "target": "esnext",
+    "allowJs": true,
     "strict": false,
-    "target": "esnext"
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
   "compileOnSave": true,
-
-  "includes": ["./typings/**/*.d.ts"],
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "includes": [
+    "./typings/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

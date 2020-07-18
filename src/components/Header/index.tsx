@@ -1,5 +1,4 @@
-import { Col, Layout, Menu, Row } from "antd";
-import { default as Link } from "next/link";
+import { Col, Layout, Row } from "antd";
 
 const { Header } = Layout;
 
