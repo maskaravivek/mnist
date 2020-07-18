@@ -1,6 +1,6 @@
-import React from "react";
+import { Button, Row, Typography } from 'antd';
+import react from "react";
 import CanvasDraw from "react-canvas-draw";
-import { Row, Typography, Button } from 'antd';
 
 const { Text, Title } = Typography;
 

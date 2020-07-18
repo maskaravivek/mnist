@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.1.0",
+    "@tensorflow/tfjs": "^2.0.1",
     "antd": "^4.2.2",
     "babel-plugin-import": "^1.9.1",
     "http-status-codes": "^1.4.0",
