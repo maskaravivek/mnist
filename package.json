@@ -18,6 +18,7 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.1.0",
     "imagemin-svgo": "^7.1.0",
+    "immutable": "^4.0.0-rc.12",
     "moment": "^2.25.3",
     "next": "^9.4.4",
     "next-redux-wrapper": "^5.0.0",

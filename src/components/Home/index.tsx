@@ -1,5 +1,5 @@
-import { Button, Row, Typography } from 'antd';
-import CanvasDraw from "react-canvas-draw";
+import { Button, Row, Col, Typography } from 'antd';
+import DrawArea from "@components/DrawArea";
 import * as tf from '@tensorflow/tfjs';
 import React from 'react';
 
@@ -38,14 +38,18 @@ const Home: React.FC<{}> = ({
   const [saveableCanvas, setSaveableCanvas] = React.useState<any>("");
   return (
     <Row>
-      <Text strong>Draw a digit from 0-9</Text>
+      <Col>
+        <Text strong>Draw a digit from 0-9</Text>
 
-      <CanvasDraw  hideGrid={true} ref={canvasDraw => (setSaveableCanvas(canvasDraw))} />
-      <br />
-      <br />
-      <Button onClick={() => {
-        predict(saveableCanvas)
-      }} type="primary">Predict</Button>
+        <DrawArea/>
+        <br />
+        <br />
+        <Button onClick={() => {
+          predict(saveableCanvas)
+        }} type="primary">Predict</Button></Col>
+      <Col>
+        <a download="Hello.jpeg" href={saveableCanvas == "" ? '' : saveableCanvas.canvasContainer.children[0].toDataURL()}>Download</a>
+      </Col>
     </Row>
   );
 };
