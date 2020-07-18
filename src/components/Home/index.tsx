@@ -1,8 +1,36 @@
 import { Button, Row, Typography } from 'antd';
 import react from "react";
 import CanvasDraw from "react-canvas-draw";
+import * as tf from '@tensorflow/tfjs';
 
 const { Text, Title } = Typography;
+
+const predict = async (saveableCanvas: any) => {
+  const model = await tf.loadLayersModel('/mnist-model.json');
+  const example = preprocessImage(getImageFromCanvas(saveableCanvas));  // for example
+  const prediction = model.predict(example);
+  // tslint:disable-next-line:no-console
+  console.log(prediction.toString())
+};
+
+const getImageFromCanvas = (saveableCanvas: any) => {
+  const image = new Image();
+  image.height = 28
+  image.width = 28
+  image.src = saveableCanvas.canvasContainer.children[1].toDataURL()
+  return image;
+}
+
+const preprocessImage = (img: any) => {
+  let tensor = tf.browser.fromPixels(img)
+  tensor = tensor.slice([0, 0, 0], [tensor.shape[0], tensor.shape[1], 1])
+
+  const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat()
+  const offset = tf.scalar(255.0);
+  const normalized = tf.scalar(1.0).sub(resized.div(offset));
+  const batched = resized.expandDims(0)
+  return batched
+}
 
 const Home: React.FC<{}> = ({
 
@@ -16,10 +44,7 @@ const Home: React.FC<{}> = ({
       <br />
       <br />
       <Button onClick={() => {
-        localStorage.setItem(
-          "savedDrawing",
-          saveableCanvas.canvasContainer.children[1].toDataURL()
-        );
+        predict(saveableCanvas)
       }} type="primary">Predict</Button>
     </Row>
   );
