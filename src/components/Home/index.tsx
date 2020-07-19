@@ -5,19 +5,21 @@ import React from 'react';
 
 const { Text } = Typography;
 
-const predict = async (saveableCanvas: any) => {
+const predict = async () => {
   const model = await tf.loadLayersModel('/mnist-model.json');
-  const example = preprocessImage(getImageFromCanvas(saveableCanvas));  // for example
+  const example = preprocessImage(getImageFromCanvas());  // for example
   const prediction = model.predict(example);
   // tslint:disable-next-line:no-console
   console.log(prediction.toString())
 };
 
-const getImageFromCanvas = (saveableCanvas: any) => {
+const getImageFromCanvas = () => {
+  const imgData = localStorage.getItem('image')
+  console.log(imgData)
   const image = new Image();
-  image.height = 28
-  image.width = 28
-  image.src = saveableCanvas.canvasContainer.children[1].toDataURL()
+  image.height = 400
+  image.width = 400
+  image.src = imgData
   return image;
 }
 
@@ -29,27 +31,24 @@ const preprocessImage = (img: any) => {
   const offset = tf.scalar(255.0);
   const normalized = tf.scalar(1.0).sub(resized.div(offset));
   const batched = normalized.expandDims(0)
+  console.log(batched.toString())
   return batched
 }
 
 const Home: React.FC<{}> = ({
 
 }) => {
-  const [saveableCanvas, setSaveableCanvas] = React.useState<any>("");
   return (
     <Row>
       <Col>
         <Text strong>Draw a digit from 0-9</Text>
 
-        <DrawArea/>
+        <DrawArea />
         <br />
         <br />
         <Button onClick={() => {
-          predict(saveableCanvas)
+          predict()
         }} type="primary">Predict</Button></Col>
-      <Col>
-        <a download="Hello.jpeg" href={saveableCanvas == "" ? '' : saveableCanvas.canvasContainer.children[0].toDataURL()}>Download</a>
-      </Col>
     </Row>
   );
 };
