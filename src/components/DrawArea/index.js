@@ -70,6 +70,7 @@ class DrawArea extends React.Component {
                         height: "400px",
                         float: "left",
                         border: "1px solid black",
+                        background: "black",
                         cursor: "crosshair"
                     }
                 }
@@ -98,6 +99,7 @@ function Drawing({ lines }) {
             var png = canvas.toDataURL("image/png");
             localStorage.setItem('image', png)
         };
+        img.fill = 'white';
         img.src = url;
     }
     return (
@@ -137,9 +139,9 @@ function DrawingLine({ line }) {
             .join(" L ");
 
     return <path style={{
-        "fill": "none",
+        "fill": "black",
         "stroke-width": "10px",
-        "stroke": "black",
+        "stroke": "white",
         "stroke-linejoin": "round",
         "stroke-linecap": "round",
     }} d={pathData} />;
