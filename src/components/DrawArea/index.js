@@ -92,11 +92,12 @@ function Drawing({ lines }) {
         var ctx = canvas.getContext("2d");
         var DOMURL = self.URL || self.webkitURL || self;
         var img = new Image();
+        img.background = 'black'
         var svg = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
         var url = DOMURL.createObjectURL(svg);
         img.onload = function () {
             ctx.drawImage(img, 0, 0);
-            var png = canvas.toDataURL("image/png");
+            var png = canvas.toDataURL("image/jpeg");
             localStorage.setItem('image', png)
         };
         img.fill = 'white';
@@ -107,6 +108,7 @@ function Drawing({ lines }) {
             {
                 width: "100%",
                 height: "100%",
+                background: "black"
             }
         } id="something">
             <svg onClick={() => {
@@ -118,6 +120,7 @@ function Drawing({ lines }) {
                 {
                     width: "100%",
                     height: "100%",
+                    background: "black"
                 }
             } >
                 {
@@ -139,8 +142,8 @@ function DrawingLine({ line }) {
             .join(" L ");
 
     return <path style={{
-        "fill": "black",
-        "stroke-width": "10px",
+        "fill": "none",
+        "stroke-width": "20px",
         "stroke": "white",
         "stroke-linejoin": "round",
         "stroke-linecap": "round",

@@ -2,6 +2,7 @@ import { Button, Row, Col, Typography } from 'antd';
 import DrawArea from "@components/DrawArea";
 import * as tf from '@tensorflow/tfjs';
 import React from 'react';
+import { Tensor, Rank } from '@tensorflow/tfjs';
 
 const { Text } = Typography;
 
@@ -9,9 +10,16 @@ const predict = async () => {
   const model = await tf.loadLayersModel('/mnist-model.json');
   const example = preprocessImage(getImageFromCanvas());  // for example
   const prediction = model.predict(example);
-  // tslint:disable-next-line:no-console
-  console.log(prediction.toString())
+  tensorToClassLabel(prediction)
 };
+
+const tensorToClassLabel = (prediction) => {
+  console.log(prediction.toString())
+  prediction.array().then(array => {
+    let maxIdx = array[0].indexOf(Math.max(...array[0]));
+    alert(maxIdx)
+  });
+}
 
 const getImageFromCanvas = () => {
   const imgData = localStorage.getItem('image')
