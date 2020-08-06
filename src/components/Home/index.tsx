@@ -2,15 +2,17 @@ import { Button, Row, Col, Typography } from 'antd';
 import DrawArea from "@components/DrawArea";
 import * as tf from '@tensorflow/tfjs';
 import React from 'react';
-import { Tensor, Rank } from '@tensorflow/tfjs';
+import { Tensor, Rank, util } from '@tensorflow/tfjs';
 
 const { Text } = Typography;
 
 const predict = async () => {
-  const model = await tf.loadLayersModel('/mnist-model.json');
-  const example = preprocessImage(getImageFromCanvas());  // for example
-  const prediction = model.predict(example);
-  tensorToClassLabel(prediction)
+  setTimeout(async function () {
+    const model = await tf.loadLayersModel('/mnist-model.json');
+    const example = preprocessImage(getImageFromCanvas());  // for example
+    const prediction = model.predict(example);
+    tensorToClassLabel(prediction)
+  }, 1000)
 };
 
 const tensorToClassLabel = (prediction) => {
@@ -32,16 +34,19 @@ const getImageFromCanvas = () => {
 }
 
 const preprocessImage = (img: any) => {
-  let tensor = tf.browser.fromPixels(img)
+  let tensor = tf.browser.fromPixels(img, 4)
   tensor = tensor.slice([0, 0, 0], [tensor.shape[0], tensor.shape[1], 1])
 
   const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat()
-  const offset = tf.scalar(255.0);
-  const normalized = tf.scalar(1.0).sub(resized.div(offset));
-  const batched = normalized.expandDims(0)
-  console.log(batched.toString())
-  return batched
+  // Normalize the image from [0, 255] to [-1, 1].
+  const offset = tf.scalar(127);
+  const normalized = resized.sub(offset).div(offset);
+
+  // Reshape to a single-element batch so we can pass it to predict.
+  const batched = normalized.expandDims(0);
+  return batched;
 }
+
 
 const Home: React.FC<{}> = ({
 
