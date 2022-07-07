@@ -19,7 +19,7 @@
     "imagemin-optipng": "^7.1.0",
     "imagemin-svgo": "^7.1.0",
     "immutable": "^4.0.0-rc.12",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "next": "^9.4.4",
     "next-redux-wrapper": "^5.0.0",
     "next-seo": "^4.4.0",
